@@ -6,7 +6,7 @@
 
   HOW TO USE THIS FILE
   MailerLite's Code component caps out at 5000 characters, so this page
-  is now split into 14 small components instead of 7 big ones. Paste
+  is split into 16 small components instead of one big file. Paste
   component 0 (Global Styles) into its own Code component FIRST, at
   the very top of the page, before anything else below it. It defines
   the shared design tokens, typography and button styles every later
@@ -20,13 +20,16 @@
   followed by two MARKUP parts, since its two project cards together
   were too long for one component, so they now stack vertically
   instead of sitting side by side on desktop, that is the one visual
-  trade-off from splitting it. Q4 and the closing section are each
-  small enough to stay as a single component.
+  trade-off from splitting it. The header, footer, Q4, and the closing
+  section are each small enough to stay as a single component.
+
+  Component 1 is a sticky in-page jump nav (The fit / 01 / 02 / 03 /
+  04), separate from whatever header your MailerLite page already
+  uses. If your page's own header is also sticky, you will likely want
+  to either drop position:sticky from .mm-nav or give it a top offset
+  so the two do not sit on top of each other.
 
   Dropped on purpose vs. the original file:
-  - The sticky top nav plus custom footer, since your MailerLite page
-    already has its own header and footer and a second nav would
-    duplicate it.
   - The dotted background grid, heavy drop shadows, and the marigold
     accent color, since none of those are in your token set, so
     warn and "no" states now use neutral black and gray instead of
@@ -34,14 +37,14 @@
   - JetBrains Mono and Bricolage Grotesque, since everything is Inter
     now, including the small uppercase eyebrow labels.
 
-  If you want the queue-panel animation (component 2) to run, your
+  If you want the queue-panel animation (component 3) to run, your
   MailerLite Code component needs to allow inline JavaScript to run.
   If it strips scripts, the panel still displays correctly, it just
   will not animate, and nothing else on the page depends on it.
 -->
 
 <!-- ============================================================= -->
-<!-- COMPONENT 0 — GLOBAL STYLES (paste once, first, before all else) -->
+<!-- COMPONENT 0 — GLOBAL STYLES (paste once, first, before all else)-->
 <!-- ============================================================= -->
 <style>
 .mm-block,.mm-block *{box-sizing:border-box}
@@ -69,7 +72,37 @@
 
 
 <!-- ============================================================= -->
-<!-- COMPONENT 1 — HERO STYLE                                       -->
+<!-- COMPONENT 1 — HEADER: STYLE + MARKUP -->
+<!-- ============================================================= -->
+<style>
+.mm-nav{background:rgba(255,255,255,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--mm-border);position:sticky;top:0;z-index:40}
+.mm-nav-wrap{max-width:1180px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.mm-nav-who{font-family:var(--mm-font);font-weight:600;font-size:16px;color:var(--mm-black);text-decoration:none!important;white-space:nowrap}
+.mm-nav-who span{color:#8A9490;font-weight:400}
+.mm-navlinks{display:flex;gap:20px;align-items:center}
+.mm-navlinks a{font-size:12px;font-weight:500;letter-spacing:.04em;color:var(--mm-text);text-decoration:none!important;padding:4px 0;border-bottom:1px solid transparent}
+.mm-navlinks a:hover{color:var(--mm-black);border-bottom-color:var(--mm-primary)}
+@media(max-width:820px){.mm-navlinks{display:none}}
+</style>
+<nav class="mm-block mm-nav">
+  <div class="mm-nav-wrap">
+    <a class="mm-nav-who" href="#mm-top">Manik Mia <span>· application</span></a>
+    <div class="mm-navlinks">
+      <a href="#mm-fit">The fit</a>
+      <a href="#mm-q1">01 Mature codebase</a>
+      <a href="#mm-q2">02 Built from scratch</a>
+      <a href="#mm-q3">03 Ratings</a>
+      <a href="#mm-q4">04 Joy</a>
+    </div>
+  </div>
+</nav>
+<!-- ============================================================= -->
+<!-- COMPONENT 1 END                     -->
+<!-- ============================================================= -->
+
+
+<!-- ============================================================= -->
+<!-- COMPONENT 2 — HERO STYLE-->
 <!-- ============================================================= -->
 <style>
 .mm-hero{background:var(--mm-bg)}
@@ -106,12 +139,12 @@
 @media(prefers-reduced-motion:reduce){.mm-chip{animation:none;opacity:1}.mm-pulse{animation:none}}
 </style>
 <!-- ============================================================= -->
-<!-- COMPONENT 1 END                                                -->
+<!-- COMPONENT 2 END        -->
 <!-- ============================================================= -->
 
 
 <!-- ============================================================= -->
-<!-- COMPONENT 2 — HERO MARKUP + SCRIPT                             -->
+<!-- COMPONENT 3 — HERO MARKUP + SCRIPT-->
 <!-- ============================================================= -->
 <section class="mm-block mm-hero" id="mm-top">
   <div class="mm-hero-wrap">
@@ -195,12 +228,12 @@
 })();
 </script>
 <!-- ============================================================= -->
-<!-- COMPONENT 2 END                                                -->
+<!-- COMPONENT 3 END                  -->
 <!-- ============================================================= -->
 
 
 <!-- ============================================================= -->
-<!-- COMPONENT 3 — THE FIT: STYLE                                  -->
+<!-- COMPONENT 4 — THE FIT: STYLE-->
 <!-- ============================================================= -->
 <style>
 .mm-fit{background:var(--mm-bg-alt)}
@@ -218,12 +251,12 @@
 @media(max-width:720px){.mm-fit-row{grid-template-columns:1fr}.mm-fit-ask{border-right:0;padding-bottom:4px}.mm-fit-ev{padding-top:0;padding-left:45px}}
 </style>
 <!-- ============================================================= -->
-<!-- COMPONENT 3 END                                                -->
+<!-- COMPONENT 4 END            -->
 <!-- ============================================================= -->
 
 
 <!-- ============================================================= -->
-<!-- COMPONENT 4 — THE FIT: MARKUP                                 -->
+<!-- COMPONENT 5 — THE FIT: MARKUP-->
 <!-- ============================================================= -->
 <section class="mm-block mm-fit" id="mm-fit">
   <div class="mm-fit-wrap">
@@ -254,12 +287,12 @@
   </div>
 </section>
 <!-- ============================================================= -->
-<!-- COMPONENT 4 END                                                -->
+<!-- COMPONENT 5 END             -->
 <!-- ============================================================= -->
 
 
 <!-- ============================================================= -->
-<!-- COMPONENT 5 — Q1 (MATURE CODEBASE): STYLE                     -->
+<!-- COMPONENT 6 — Q1 (MATURE CODEBASE): STYLE-->
 <!-- ============================================================= -->
 <style>
 .mm-q1{background:var(--mm-bg)}
@@ -290,12 +323,12 @@
 .mm-pull{margin:34px 0 0;border-left:3px solid var(--mm-primary);padding:4px 0 4px 22px;font-family:var(--mm-font);font-size:20px;font-weight:600;letter-spacing:-.01em;line-height:1.35;max-width:40ch;color:var(--mm-black)}
 </style>
 <!-- ============================================================= -->
-<!-- COMPONENT 5 END                                                -->
+<!-- COMPONENT 6 END                         -->
 <!-- ============================================================= -->
 
 
 <!-- ============================================================= -->
-<!-- COMPONENT 6 — Q1 (MATURE CODEBASE): MARKUP                    -->
+<!-- COMPONENT 7 — Q1 (MATURE CODEBASE): MARKUP-->
 <!-- ============================================================= -->
 <section class="mm-block mm-q1" id="mm-q1">
   <div class="mm-q1-wrap">
@@ -351,12 +384,12 @@
   </div>
 </section>
 <!-- ============================================================= -->
-<!-- COMPONENT 6 END                                                -->
+<!-- COMPONENT 7 END                          -->
 <!-- ============================================================= -->
 
 
 <!-- ============================================================= -->
-<!-- COMPONENT 7 — Q2 (BUILT FROM SCRATCH): STYLE                  -->
+<!-- COMPONENT 8 — Q2 (BUILT FROM SCRATCH): STYLE-->
 <!-- ============================================================= -->
 <style>
 .mm-q2{background:var(--mm-bg-alt)}
@@ -386,12 +419,12 @@
 .mm-pull{margin:34px 0 0;border-left:3px solid var(--mm-primary);padding:4px 0 4px 22px;font-size:20px;font-weight:600;letter-spacing:-.01em;line-height:1.35;max-width:44ch;color:var(--mm-black)}
 </style>
 <!-- ============================================================= -->
-<!-- COMPONENT 7 END                                                -->
+<!-- COMPONENT 8 END                            -->
 <!-- ============================================================= -->
 
 
 <!-- ============================================================= -->
-<!-- COMPONENT 8 — Q2 MARKUP PART A (intro + Neuro card)            -->
+<!-- COMPONENT 9 — Q2 MARKUP PART A (intro + Neuro card)-->
 <!-- ============================================================= -->
 <section class="mm-block mm-q2" id="mm-q2">
   <div class="mm-q2-wrap">
@@ -432,12 +465,12 @@ Neuro::<span class="mm-kw">fake</span>();</pre></div>
   </div>
 </section>
 <!-- ============================================================= -->
-<!-- COMPONENT 8 END                                                -->
+<!-- COMPONENT 9 END                                   -->
 <!-- ============================================================= -->
 
 
 <!-- ============================================================= -->
-<!-- COMPONENT 9 — Q2 MARKUP PART B (GoExpress card + closing line) -->
+<!-- COMPONENT 10 — Q2 MARKUP PART B (GoExpress card + closing line)-->
 <!-- ============================================================= -->
 <section class="mm-block mm-q2" id="mm-q2-b">
   <div class="mm-q2-wrap" style="padding-top:0">
@@ -470,12 +503,12 @@ admin.<span class="mm-kw">DELETE</span>(<span class="mm-st">"/users/:id"</span>,
   </div>
 </section>
 <!-- ============================================================= -->
-<!-- COMPONENT 9 END                                                -->
+<!-- COMPONENT 10 END                                              -->
 <!-- ============================================================= -->
 
 
 <!-- ============================================================= -->
-<!-- COMPONENT 10 — Q3 (RATINGS): STYLE                             -->
+<!-- COMPONENT 11 — Q3 (RATINGS): STYLE-->
 <!-- ============================================================= -->
 <style>
 .mm-q3{background:var(--mm-bg)}
@@ -508,12 +541,12 @@ admin.<span class="mm-kw">DELETE</span>(<span class="mm-st">"/users/:id"</span>,
 }
 </style>
 <!-- ============================================================= -->
-<!-- COMPONENT 10 END                                               -->
+<!-- COMPONENT 11 END                 -->
 <!-- ============================================================= -->
 
 
 <!-- ============================================================= -->
-<!-- COMPONENT 11 — Q3 (RATINGS): MARKUP + SCRIPT                  -->
+<!-- COMPONENT 12 — Q3 (RATINGS): MARKUP + SCRIPT-->
 <!-- ============================================================= -->
 <section class="mm-block mm-q3" id="mm-q3">
   <div class="mm-q3-wrap">
@@ -591,12 +624,12 @@ admin.<span class="mm-kw">DELETE</span>(<span class="mm-st">"/users/:id"</span>,
 })();
 </script>
 <!-- ============================================================= -->
-<!-- COMPONENT 11 END                                               -->
+<!-- COMPONENT 12 END                           -->
 <!-- ============================================================= -->
 
 
 <!-- ============================================================= -->
-<!-- COMPONENT 12 — Q4 (JOY): STYLE + MARKUP                        -->
+<!-- COMPONENT 13 — Q4 (JOY): STYLE + MARKUP-->
 <!-- ============================================================= -->
 <style>
 .mm-q4{background:var(--mm-bg-alt)}
@@ -650,12 +683,12 @@ admin.<span class="mm-kw">DELETE</span>(<span class="mm-st">"/users/:id"</span>,
   </div>
 </section>
 <!-- ============================================================= -->
-<!-- COMPONENT 12 END                                               -->
+<!-- COMPONENT 13 END                      -->
 <!-- ============================================================= -->
 
 
 <!-- ============================================================= -->
-<!-- COMPONENT 13 — CLOSE: STYLE + MARKUP                           -->
+<!-- COMPONENT 14 — CLOSE: STYLE + MARKUP-->
 <!-- ============================================================= -->
 <style>
 .mm-close{background:var(--mm-bg)}
@@ -688,5 +721,29 @@ admin.<span class="mm-kw">DELETE</span>(<span class="mm-st">"/users/:id"</span>,
   </div>
 </section>
 <!-- ============================================================= -->
-<!-- COMPONENT 13 END                                               -->
+<!-- COMPONENT 14 END                   -->
+<!-- ============================================================= -->
+
+
+<!-- ============================================================= -->
+<!-- COMPONENT 15 — FOOTER: STYLE + MARKUP -->
+<!-- ============================================================= -->
+<style>
+.mm-footer{border-top:1px solid var(--mm-border);padding:26px 0}
+.mm-footer-wrap{max-width:1180px;margin:0 auto;padding:0 24px;display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;font-size:12px;color:#8A9490}
+.mm-footer-wrap a{color:var(--mm-text);text-decoration:none!important}
+.mm-footer-wrap a:hover{color:var(--mm-primary-deep)}
+</style>
+<footer class="mm-block mm-footer">
+  <div class="mm-footer-wrap">
+    <span>Manik Mia — Full-Stack Engineer · Dhaka, GMT+6</span>
+    <span>
+      <a href="https://github.com/dev-manik-mia" target="_blank" rel="noopener">GitHub</a> ·
+      <a href="https://linkedin.com/in/dev-manik-mia" target="_blank" rel="noopener">LinkedIn</a> ·
+      <a href="mailto:manikmia.dev@gmail.com">Email</a>
+    </span>
+  </div>
+</footer>
+<!-- ============================================================= -->
+<!-- COMPONENT 15 END                     -->
 <!-- ============================================================= -->
