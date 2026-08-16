@@ -65,6 +65,19 @@
 .mm-btn-tertiary{background:#fff;color:var(--mm-black)!important;border-color:#d4d4d4}
 .mm-btn-lg{height:54px;border-radius:10px;font-size:16px;padding:0 26px}
 .mm-btn-sm{height:38px;border-radius:6px;font-size:14px;padding:0 14px}
+
+/* Neutralize MailerLite's own row-wrapper spacing/classes around our
+   sections only (scoped via :has, so any other native MailerLite row
+   or block elsewhere on the page is left untouched). Requires a
+   browser with CSS :has() support (all current Chrome/Safari/Firefox). */
+.transition-all.duration-150.empty\:hidden:has(.mm-block){padding-top:0!important;padding-bottom:0!important}
+.ml-animate:has(.mm-block){animation:none!important;transition:none!important;opacity:1!important;transform:none!important}
+.mx-auto:has(.mm-block){margin-left:0!important;margin-right:0!important}
+.w-full:has(.mm-block){width:auto!important}
+.max-w-6xl:has(.mm-block){max-width:none!important}
+.px-4:has(.mm-block){padding-left:0!important;padding-right:0!important}
+.md\:px-8:has(.mm-block){padding-left:0!important;padding-right:0!important}
+.lg\:px-8:has(.mm-block){padding-left:0!important;padding-right:0!important}
 </style>
 <!-- ============================================================= -->
 <!-- COMPONENT 0 END                                                -->
